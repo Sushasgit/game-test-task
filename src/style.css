@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,500&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font: 16px 'Roboto', 'Arial', sans-serif;
+}
+
+  .container {
+    max-width: 1920px;
+    margin: 0 auto;
+  }
+  
+  .cell {
+    height: 90px;
+    border: 1px solid black;
+  }
+  
+  .board {
+    display: grid;
+
+    justify-content: center;
+  }
+
+  .easy {
+    grid-template-columns: repeat(5, 90px);
+  }
+
+  .normal {
+    grid-template-columns: repeat(10, 90px);
+  }
+
+  .hard {
+    grid-template-columns: repeat(15, 90px);
+  }
+  
+  .active {
+    background-color: blue;
+  }
+  
+  .failed {
+    background-color: red;
+  }
+  
+  .win {
+    background-color: green;
+  }
+
+  .game-field {
+    display: flex;
+    max-height: 100vh;
+    overflow-y: scroll;
+    align-items: center;
+  }
+
+  .game-field > * {
+    flex: 1 0 50%;
+  }
+
+  .input {
+    min-height: 40px;
+    width: 100%;
+  }
+  
+  .btn {
+    max-width: 160px;
+    padding: 10px;
+    color: rgba(0,0,0,.8);
+    border: 1px solid #999;
+    border: none transparent;
+    background-color: #e6e6e6;
+    text-decoration: none;
+    border-radius: 2px;
+    line-height: 1.3;
+  }

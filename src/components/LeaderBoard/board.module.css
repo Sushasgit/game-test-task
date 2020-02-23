@@ -1,0 +1,17 @@
+.boardList {
+    list-style: none;
+}
+
+.boardItem {
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #cfd8dc;
+    max-width: 300px;
+    color: #565859;
+}
+
+.boardItem:not(:last-child) {
+    margin-bottom: 3px;
+}
