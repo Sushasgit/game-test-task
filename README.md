@@ -1,5 +1,9 @@
 # Game-test-task
 
+## Для запуска (dev)
+* npm i
+* npm start
+
 ## Демо
 Можно посмотреть здесь [Демо](https://sushasgit.github.io/game-test-task/)
 
