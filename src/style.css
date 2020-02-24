@@ -40,6 +40,10 @@ body {
     height: var(--cell-size);
     border: 1px solid #ebebed;
 }
+
+.cell:focus {
+    outline: none;
+}
   
 .board {
     display: grid;
