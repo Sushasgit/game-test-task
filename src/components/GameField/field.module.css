@@ -22,6 +22,7 @@
 @media (max-width: 970px) {
     .gameField {
         border-right: none;
+        margin-bottom: 40px;
     }
 }
 

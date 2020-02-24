@@ -9,7 +9,7 @@
     .easy,
     .normal,
     .hard {
-        --cell-size: 30px;
+        --cell-size: 20px;
     }
 }
 
@@ -18,7 +18,7 @@
     .easy,
     .normal,
     .hard {
-        --cell-size: 20px;
+        --cell-size: 15px;
     }
 }
 
@@ -43,7 +43,6 @@ body {
   
   .board {
     display: grid;
-
     justify-content: center;
   }
 

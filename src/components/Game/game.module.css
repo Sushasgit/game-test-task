@@ -11,6 +11,10 @@
 }
 
 @media (max-width: 970px) {
+    .flex {
+        overflow: unset;
+    }
+    
     .flex > * {
         width: 100%;
     }
