@@ -19,9 +19,13 @@ export const formatDate = (date) => {
   const monthIndex = date.getMonth();
   const year = date.getFullYear();
 
-  const time = date.toLocaleTimeString('en-US', { hour12: false, 
-    hour: "numeric", 
-    minute: "numeric"});
+  const time = date.toLocaleTimeString(
+    'en-US', {
+      hour12: false,
+      hour: 'numeric',
+      minute: 'numeric',
+    },
+  );
 
   return `${day} ${monthNames[monthIndex]} ${year} ${time}`;
 };

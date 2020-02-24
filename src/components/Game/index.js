@@ -1,19 +1,18 @@
 import React from 'react';
 import LeaderBoard from '../LeaderBoard';
-import { getGameSettings, getGameWinners } from '../../api';
+import { getGameSettings } from '../../api';
 import GameField from '../GameField';
 
-class Game extends React.Component {
+class Game extends React.PureComponent {
   constructor() {
     super();
     this.state = {
-      winners: [],
+      gameSettings: {},
     };
   }
 
   componentDidMount() {
     this.getSettings();
-    this.getWinners();
   }
 
   getSettings = () => {
@@ -27,25 +26,15 @@ class Game extends React.Component {
       .catch(() => console.log('error'));
   }
 
-    getWinners = () => {
-      getGameWinners()
-        .then((response) => response.json())
-        .then((data) => {
-          this.setState({
-            winners: data,
-          });
-        });
-    }
-
-    render() {
-      const { winners, gameSettings } = this.state;
-      return (
-          <div>
-              <GameField gameSettings={gameSettings} />
-              <LeaderBoard winners={winners} />
-          </div>
-      );
-    }
+  render() {
+    const { gameSettings } = this.state;
+    return (
+        <div>
+            <GameField gameSettings={gameSettings} />
+            <LeaderBoard />
+        </div>
+    );
+  }
 }
 
 export default Game;

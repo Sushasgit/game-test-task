@@ -1,18 +1,21 @@
 import React from 'react';
 import uid from 'uid';
 import classNames from 'classnames';
+import { connect } from 'react-redux';
 
 import { setGameWinner } from '../../api';
 import { selectRandomItem, findIndex, formatDate } from '../../utils';
 import Message from '../Message';
 import Select from '../Select';
 import Field from '../Field';
+import { fetchWinners } from '../../actions';
 
 class GameField extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       game: [],
+      winners: [],
       userScore: 0,
       userName: '',
       message: '',
@@ -21,6 +24,11 @@ class GameField extends React.Component {
       level: {},
     };
     this.timer = null;
+  }
+
+  componentDidMount() {
+    const { getWinner } = this.props;
+    getWinner();
   }
 
   setDefaultSettings = () => {
@@ -99,7 +107,12 @@ class GameField extends React.Component {
             date: formatDate(new Date()),
           }),
         };
-        setGameWinner(options);
+        setGameWinner(options)
+          .then((response) => response.json())
+          .then(() => {
+            const { getWinner } = this.props;
+            getWinner();
+          });
       });
     } else {
       this.nextGameStep();
@@ -162,39 +175,59 @@ class GameField extends React.Component {
     } = this.state;
     return (
         <div className="game-field">
-            <div>
-                <form onSubmit={(e) => { this.startGame(e); }}>
-                    {
-                        gameSettings ? (
-                            <Select options={gameSettings} handleChange={this.handleChange} />
-                        ) : null
-                    }
-                    <input className="input" required type="text" onChange={this.handleNameChange} />
+            <form onSubmit={(e) => { this.startGame(e); }}>
+                {
+                    gameSettings ? (
+                        <Select
+                          options={gameSettings}
+                          handleChange={this.handleChange}
+                        />
+                    ) : null
+                }
+                <input
+                  className="input"
+                  required
+                  type="text"
+                  onChange={this.handleNameChange}
+                />
 
-                    {
+                {
                     message ? (
-                        <button type="button" className="btn" onClick={this.resetGame}>Play Again</button>
+                        <button
+                          type="button"
+                          className="btn"
+                          onClick={this.resetGame}
+                        >
+                            Play Again
+                        </button>
                     ) : (
-                        <button className="btn" disabled={!game.length && !isPlaying} type="submit">Start Game</button>
+                        <button
+                          className="btn"
+                          disabled={!game.length && !isPlaying}
+                          type="submit"
+                        >
+                            Start Game
+                        </button>
                     )
-                    }
-                </form>
-                <Message message={message} />
-                <div className={classNames('board', {
-                  easy: level.field === 5,
-                  normal: level.field === 10,
-                  hard: level.field === 15,
-                })}
-                >
-                    {
-                        game && isPlaying
-                          ? <Field clickedItem={this.clickedItem} game={game} /> : null
-                    }
-                </div>
+                }
+            </form>
+            <Message message={message} />
+            <div className={classNames('board', {
+              easy: level.field === 5,
+              normal: level.field === 10,
+              hard: level.field === 15,
+            })}
+            >
+                {
+                    game && isPlaying
+                      ? <Field clickedItem={this.clickedItem} game={game} /> : null
+                }
             </div>
         </div>
     );
   }
 }
+const mapStateToProps = (state) => ({ winners: state.winners });
+const mapDispatchToProps = { getWinner: fetchWinners };
 
-export default GameField;
+export default connect(mapStateToProps, mapDispatchToProps)(GameField);
