@@ -34,7 +34,7 @@
     color: #909090;
 }
 
-@media (max-width: 970px) {
+@media (max-width: 1220px) {
     .board {
         padding: 0 10px;
         overflow-y: unset;

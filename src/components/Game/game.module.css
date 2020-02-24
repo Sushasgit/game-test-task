@@ -2,15 +2,14 @@
     display: flex;
     flex-wrap: wrap;
     border: 4px solid #eeeeee;
-    height: 100vh;
-    overflow: hidden;
+    min-height: 100vh;
 }
   
 .flex > * {
     width: 50%;
 }
 
-@media (max-width: 970px) {
+@media (max-width: 1220px) {
     .flex {
         overflow: unset;
         height: auto;
