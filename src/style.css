@@ -1,5 +1,27 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:400,500&display=swap');
 
+:root {
+    --cell-size: 40px;
+}
+
+@media (max-width: 970px) {
+    .cell,
+    .easy,
+    .normal,
+    .hard {
+        --cell-size: 30px;
+    }
+}
+
+@media (max-width: 400px) {
+    .cell,
+    .easy,
+    .normal,
+    .hard {
+        --cell-size: 20px;
+    }
+}
+
 * {
     box-sizing: border-box;
 }
@@ -15,8 +37,8 @@ body {
   }
   
   .cell {
-    height: 90px;
-    border: 1px solid black;
+    height: var(--cell-size);
+    border: 1px solid #ebebed;
   }
   
   .board {
@@ -26,53 +48,52 @@ body {
   }
 
   .easy {
-    grid-template-columns: repeat(5, 90px);
+    grid-template-columns: repeat(5, var(--cell-size));
   }
 
   .normal {
-    grid-template-columns: repeat(10, 90px);
+    grid-template-columns: repeat(10, var(--cell-size));
   }
 
   .hard {
-    grid-template-columns: repeat(15, 90px);
+    grid-template-columns: repeat(15, var(--cell-size));
   }
   
   .active {
-    background-color: blue;
+    background-color: #41d8e6;
   }
   
   .failed {
-    background-color: red;
+    background-color: #e95963;
   }
   
   .win {
-    background-color: green;
-  }
-
-  .game-field {
-    display: flex;
-    max-height: 100vh;
-    overflow-y: scroll;
-    align-items: center;
-  }
-
-  .game-field > * {
-    flex: 1 0 50%;
+    background-color: #00e881;
   }
 
   .input {
     min-height: 40px;
     width: 100%;
+    max-width: 300px;
+    font-size: 18px;
+    color: #819298;
+    background-color: #f3f3f3;
+    border: none;
+    padding-left: 10px;
   }
   
   .btn {
-    max-width: 160px;
+    font-family: 'Roboto', 'Arial', sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    max-width: 300px;
     padding: 10px;
-    color: rgba(0,0,0,.8);
+    color: #fff;
     border: 1px solid #999;
     border: none transparent;
-    background-color: #e6e6e6;
+    background-color: #7b8d93;
     text-decoration: none;
     border-radius: 2px;
     line-height: 1.3;
+    text-transform: uppercase;
   }

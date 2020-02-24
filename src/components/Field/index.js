@@ -3,9 +3,10 @@ import React from 'react';
 import classNames from 'classnames';
 
 const Field = ({ game, clickedItem }) => (
-  game.map((item, index) => (
+  game.map((item) => (
       <button
         type="button"
+        aria-label="Button click"
         key={item.id}
         disabled={item.disabled}
         onClick={() => {
@@ -16,9 +17,7 @@ const Field = ({ game, clickedItem }) => (
           failed: item.winner === 'compoter',
           win: item.winner === 'user',
         })}
-      >
-          {index}
-      </button>
+      />
   ))
 );
 

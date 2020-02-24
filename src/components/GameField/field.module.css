@@ -1,0 +1,32 @@
+.form {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0 20px;
+    padding-top: 100px;
+    justify-content: center;
+}
+  
+.form > * {
+    flex: 1 0 200px;
+    margin-bottom: 10px;
+}
+
+.form > *:not(:last-child) {
+    margin-right: 20px;
+}
+
+.gameField {
+    border-right: 4px solid #eeeeee;
+}
+
+@media (max-width: 970px) {
+    .gameField {
+        border-right: none;
+    }
+}
+
+@media (max-width : 450px) {
+    .form > *:not(:last-child) {
+        margin-right: 0;
+    }
+} 

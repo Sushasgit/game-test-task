@@ -1,7 +1,10 @@
 import React from 'react';
+
 import LeaderBoard from '../LeaderBoard';
-import { getGameSettings } from '../../api';
 import GameField from '../GameField';
+import { getGameSettings } from '../../api';
+
+import styles from './game.module.css';
 
 class Game extends React.PureComponent {
   constructor() {
@@ -29,7 +32,7 @@ class Game extends React.PureComponent {
   render() {
     const { gameSettings } = this.state;
     return (
-        <div>
+        <div className={styles.flex}>
             <GameField gameSettings={gameSettings} />
             <LeaderBoard />
         </div>

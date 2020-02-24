@@ -1,0 +1,17 @@
+.flex {
+    display: flex;
+    flex-wrap: wrap;
+    border: 4px solid #eeeeee;
+    max-height: 100vh;
+    overflow: hidden;
+}
+  
+.flex > * {
+    width: 50%;
+}
+
+@media (max-width: 970px) {
+    .flex > * {
+        width: 100%;
+    }
+}

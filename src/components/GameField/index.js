@@ -10,6 +10,8 @@ import Select from '../Select';
 import Field from '../Field';
 import { fetchWinners } from '../../actions';
 
+import styles from './field.module.css';
+
 class GameField extends React.Component {
   constructor(props) {
     super(props);
@@ -40,6 +42,7 @@ class GameField extends React.Component {
   };
 
   startGame = (e) => {
+    e.persist();
     e.preventDefault();
     const { isPlaying, userName } = this.state;
     if (!isPlaying && userName) {
@@ -92,7 +95,7 @@ class GameField extends React.Component {
 
     if (userScore >= res || computerScore >= res) {
       let message;
-      userScore >= res ? message = `${userName} win` : message = 'Computer Win';
+      userScore >= res ? message = `${userName} wins` : message = 'Computer Wins';
       this.setState({
         isPlaying: false,
         message,
@@ -154,14 +157,17 @@ class GameField extends React.Component {
     });
   }
 
-  resetGame = () => {
+  resetGame = (e) => {
+    e.persist();
+    e.preventDefault();
+    this.setDefaultSettings();
     this.setState({
-      game: [],
       userScore: 0,
       message: '',
       computerScore: 0,
       isPlaying: false,
-      level: {},
+    }, () => {
+      this.startGame(e);
     });
   }
 
@@ -174,18 +180,20 @@ class GameField extends React.Component {
       message,
     } = this.state;
     return (
-        <div className="game-field">
-            <form onSubmit={(e) => { this.startGame(e); }}>
+        <div className={styles.gameField}>
+            <form className={styles.form} onSubmit={(e) => { this.startGame(e); }}>
                 {
                     gameSettings ? (
                         <Select
                           options={gameSettings}
                           handleChange={this.handleChange}
+                          disabled={isPlaying}
                         />
                     ) : null
                 }
                 <input
                   className="input"
+                  placeholder="Enter your name"
                   required
                   type="text"
                   onChange={this.handleNameChange}
@@ -196,7 +204,7 @@ class GameField extends React.Component {
                         <button
                           type="button"
                           className="btn"
-                          onClick={this.resetGame}
+                          onClick={(e) => { this.resetGame(e); }}
                         >
                             Play Again
                         </button>
@@ -206,7 +214,7 @@ class GameField extends React.Component {
                           disabled={!game.length && !isPlaying}
                           type="submit"
                         >
-                            Start Game
+                            Play
                         </button>
                     )
                 }
@@ -227,6 +235,7 @@ class GameField extends React.Component {
     );
   }
 }
+
 const mapStateToProps = (state) => ({ winners: state.winners });
 const mapDispatchToProps = { getWinner: fetchWinners };
 
