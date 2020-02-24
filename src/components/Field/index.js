@@ -14,7 +14,7 @@ const Field = ({ game, clickedItem }) => (
         }}
         className={classNames('cell', {
           active: !item.disabled,
-          failed: item.winner === 'compoter',
+          failed: item.winner === 'computer',
           win: item.winner === 'user',
         })}
       />

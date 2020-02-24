@@ -17,7 +17,6 @@ class GameField extends React.Component {
     super(props);
     this.state = {
       game: [],
-      winners: [],
       userScore: 0,
       userName: '',
       message: '',
@@ -67,7 +66,7 @@ class GameField extends React.Component {
       });
     }
     this.timer = setTimeout(() => {
-      randomItem.winner = 'compoter';
+      randomItem.winner = 'computer';
       randomItem.disabled = true;
       this.setState((prevState) => ({
         ...prevState,
@@ -101,10 +100,6 @@ class GameField extends React.Component {
         message,
       }, () => {
         const options = {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json;charset=UTF-8',
-          },
           body: JSON.stringify({
             winner: userScore >= res ? userName : 'Computer',
             date: formatDate(new Date()),
