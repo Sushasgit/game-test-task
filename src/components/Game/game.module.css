@@ -13,8 +13,9 @@
 @media (max-width: 970px) {
     .flex {
         overflow: unset;
+        max-height: auto;
     }
-    
+
     .flex > * {
         width: 100%;
     }
