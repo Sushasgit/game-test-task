@@ -1,7 +1,7 @@
 # Game-test-task
 
-## Demo
-You can view  [DEMO](https://sushasgit.github.io/game-test-task/)
+## Демо
+Можно посмотреть здесь [Демо](https://sushasgit.github.io/game-test-task/)
 
 ## Комментарии к тестовому заданию
 * Webpack config использовала самый простой без особых сложностей для прод сборки. Как вариант был использовать create-react-app.
