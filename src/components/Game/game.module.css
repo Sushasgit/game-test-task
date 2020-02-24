@@ -2,7 +2,7 @@
     display: flex;
     flex-wrap: wrap;
     border: 4px solid #eeeeee;
-    max-height: 100vh;
+    height: 100vh;
     overflow: hidden;
 }
   
@@ -13,7 +13,7 @@
 @media (max-width: 970px) {
     .flex {
         overflow: unset;
-        max-height: auto;
+        height: auto;
     }
 
     .flex > * {
